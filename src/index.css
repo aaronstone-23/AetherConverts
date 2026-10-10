@@ -18,4 +18,235 @@
 body {
     font-family: "Space Grotesk", system-ui, sans-serif;
     background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.app{
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: filter 0.6s;
+}
+
+.app--frenzy {
+    --accent1: #ff2e63;
+    --accent2:#ffb800;
+}
+
+/* floatinggg nice blobbs */
+
+.blob {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.45;
+    animation: drift 18s  ease-in-out infinite alternate;
+    transition: background 0.8s;
+}
+
+.blob--1 {
+    background: var(--accent1);
+    top: -150px;
+    left: -150px;
+}
+.blob--2{
+    background: var(--accent2);
+    top: -150px;
+    left: -150px;
+    animation-delay: -9s;
+}
+@keyframes drift{
+    to{transform: translate(120px, 80px) scale(1.2);}
+}
+.app--frenzy .blob{ animation-duration: 3s;}
+
+main{
+    position:relative;
+    z-index: 1;
+    width: min(560px, 100%);
+    text-align: center;
+}
+.title {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -2px;
+
+}
+.title span{
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.subtitle {
+    color: var(--muted);
+    margin-bottom: 28px;
+}
+
+.card{
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 28px;
+    padding:24px;
+    box-shadow:0 30px 80px rgba(0, 0, 0, 0.4);
+    text-align: left;
+}
+
+.tabs{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+
+}
+.tab{
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding:7px 14px;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.tab:hover{
+    color:var(--text);
+    transform: translateY(-1px);
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+
+}
+
+.row{
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+}
+.input, .select, .output {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: var(--text);
+    font: inherit;
+    padding: 16px;
+
+}
+.input, .output {
+    flex: 1;
+    font-size: 1.6rem;
+    min-width: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.select{
+    width: 42%;
+    font-size: 0.95rem;
+    cursor: pointer;
+}    
+.input:focus, .select:focus {
+    outline: 2px solid var(--accent2);
+}
+option{
+    background: #15152a;
+}
+
+.swap {
+    display: block;
+    margin: 12px auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--glass);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor:pointer;
+    transition: transform 0.3s;
+}
+.swap:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+.output {
+    animation: pop 0.35s ease;
+    user-select: all;
+
+}
+@keyframes pop{
+    from {
+        opacity: 0;
+        transform:translateY(6px);
+    }
+}
+
+.output--glitch { 
+    animation: glitch 0.5s steps(2) both;
+    border-color: var(--accent1);
+}
+@keyframes glitch{
+    0% {
+        transform: translate(-3px, 2px);
+        text-shadow: 3px 0 #ff2e63, -3px 0 #29d3ff;
+    }
+    50%{
+        transform: translate(3px, -2px);
+        text-shadow: 3px 0 #ff2e63, 3px 0 #29d3ff
+    }
+    100% {
+        transform:none; 
+        text-shadow: none;
+    }
+}
+
+.hint{
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+/* TOGGGLEEEE */
+.frenzy{
+    margin-top: 26px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font: inherit;
+    font-weight: 500;
+    padding: 8px 18px 8px 8px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.frenzy__knob{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: all 0.3s;
+}
+.frenzy--on{
+    border-color: var(--accent1);
+    box-shadow: 0 0 30px var(--accent1);
+}
+.frenzy--on .frenzy__knob{
+    background: var(--accent1);
+    transform: rotate(360deg);
+}
+
+@media(max-width: 480px) {
+    .row { flex-direction: 480px; }
+    .select{width: 100%;}
 }

@@ -10,7 +10,7 @@ export default function App() {
             <div className="blob blob--1" />
             <div className="blob blob--2" />
             <main>
-                <h1 className="title">Unit <span>Flow</span></h1>
+                <h1 className="title">Aether<span>Convert</span></h1>
                 <p className = "subtitle">convert anything, trust nothing</p>
                 <converter frenzy = {frenzy} />
                 <FrenzyToggle on = {frenzy} setOn = {setFrenzy} />
