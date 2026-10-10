@@ -1,12 +1,17 @@
-export default function FrenzyToggle({on, setOn}) {
+import { Flame } from "lucide-react";
+
+export default function FrenzyToggle({ on, setOn }) {
     return (
-    <button
-    className= {`frenzy ${on ? "frenzy-on" : ""}`}
-    onClick={() => setOn(!on)}
-    aria-pressed={on}
-    >
-        <span className="frenzy__knob"/>
-        <span className="frenzy__label">{on ? "FRENZY MODE!!" :"Frenzy mode"} "</span>
-    </button>
+        <button
+            className={`frenzy ${on ? "frenzy-on" : ""}`}
+            onClick={() => setOn(!on)}
+            aria-pressed={on}
+        >
+            <span className="frenzy__knob" />
+            <span className="frenzy__label">{on ? "FRENZY MODE!! ONNNN" : ""} </span>
+            <span className="frenzy__label">
+                {on ? <><Flame size={16} /></> : "Frenzy mode off"}
+            </span>
+        </button>
     );
 }

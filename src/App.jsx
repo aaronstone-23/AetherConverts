@@ -12,7 +12,7 @@ export default function App() {
             <main>
                 <h1 className="title">Aether<span>Convert</span></h1>
                 <p className = "subtitle">convert anything, trust nothing</p>
-                <converter frenzy = {frenzy} />
+                <Converter frenzy = {frenzy} />
                 <FrenzyToggle on = {frenzy} setOn = {setFrenzy} />
             </main>
         </div>

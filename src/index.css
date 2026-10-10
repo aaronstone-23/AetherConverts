@@ -55,12 +55,13 @@ body {
     top: -150px;
     left: -150px;
 }
-.blob--2{
+.blob--2 {
     background: var(--accent2);
-    top: -150px;
-    left: -150px;
+    top: 150px;
+    left: 150px;
     animation-delay: -9s;
 }
+
 @keyframes drift{
     to{transform: translate(120px, 80px) scale(1.2);}
 }
@@ -211,6 +212,16 @@ option{
     font-size: 0.8rem;
     text-align: center;
 }
+
+/* SVGS */
+.tab, .hint, .frenzy__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.hint { justify-content: center; }
+
+.tab svg { flex-shrink: 0; }
 
 
 /* TOGGGLEEEE */
