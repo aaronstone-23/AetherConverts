@@ -266,19 +266,10 @@ option{
 
 /* SOME CHANGES FOR AESTHETICS PLEASEE */
 
-@property --accent1 {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #7c5cff;
-}
-@property --accent2 {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #29d3ff;
-}
-.app {
-    transition: var(--accent1 0.8s, --accent2 0.8s);
-}
+@property --accent1 { syntax: "<color>"; inherits: true; initial-value: #7c5cff; }
+@property --accent2 { syntax: "<color>"; inherits: true; initial-value: #29d3ff; }
+
+.app { transition: --accent1 0.8s, --accent2 0.8s; }
 
 @property --angle {
     syntax: "<angle>";
