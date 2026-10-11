@@ -9,7 +9,7 @@
     --red: #b3221a;
 
     --blackletter: "UnifrakturCook", "Old Standard TT", serif;
-    --serif: "Old Standard TT, Times New Roman", serif;
+    --serif: "Old Standard TT", "Times New Roman", serif;
     --mono: "Courier Prime", "Courier New", monospace;
 }
 
