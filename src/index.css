@@ -296,8 +296,9 @@ option{
     padding: 1px;
     background: conic-gradient(from var(--angle), var(--accent1), var(--accent2), var(--accent1));
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-    -mark-composite: exclude;
+    -webkit-mask-composite: xor;
+    mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);;
+    mask-composite: exclude;
     animation:spin 6s linear infinite;
     pointer-events: none;
 }
