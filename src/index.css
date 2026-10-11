@@ -1,314 +1,680 @@
-/* THE SUFFERING BEGINS T-T I mean, I CAN DO THIS BUT AHHH!! I HATE HATE HATE CSSS!!!! AHHH I cant centre a div whatever*/
+/* BECAUSE OF THE SHIPPING REJECTION SAYING THAT AI WROTE THIS?!?!?!? IM GONNNA WRITE IT ALL!! BY HAND!! AND THE POWER OF FIGMA!!!!!!!!!! */
 
+/* wait... colors yeah */
 :root {
-    --bg: #0b0b14;
-    --glass: rgba(255, 255, 255, 0.07);
-    --border: rgba(255, 255, 255, 0.14);
-    --text: #f4f4ff;
-    --muted: #9a9ab8;
-    --accent1: #7c5cff;
-    --accent2: #29d3ff;
+    --paper: #ece3cf;
+    --paper-2: #ddd1b4;
+     --ink: #1a1510;
+    --muted: #5a4f40;
+    --red: #b3221a;
+
+    --blackletter: "UnifrakturCook", "Old Standard TT", serif;
+    --serif: "Old Standard TT, Times New Roman", serif;
+    --mono: "Courier Prime", "Courier New", monospace;
+}
+
+/* Frenzy mode, soo Paper will be yellow ofc */
+.app--frenzy {
+    --paper: #f1d54a;
+    --paper-2: #e3c63a;
+}
+
+
+/* Basicss */
+
+*,
+* ::before,
+*::after {
+    box-sizing: border-box;
 }
 
 * {
-    box-sizing: border-box;
     margin: 0;
 }
 
+::selection {
+    background: var(--red);
+    color: var(--paper);
+}
+
 body {
-    font-family: "Space Grotesk", system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
-.app{
+button,
+input,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+}
+
+.app {
     min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    transition: filter 0.6s;
+    padding: clamp(14px, 3vw, 40px) clamp(14px, 4vw, 56px) 64px;
+    background: var(--paper);
+    color: var(--ink);
 }
 
-.app--frenzy {
-    --accent1: #ff2e63;
-    --accent2:#ffb800;
-}
-
-
-/* floatinggg nice blobbs */
-
+/* because blobs are gone but App.jsx still renders them, I just hid them */
 .blob {
-    position: absolute;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    filter: blur(110px);
-    opacity: 0.45;
-    animation: drift 18s  ease-in-out infinite alternate;
-    transition: background 0.8s;
+    display: none;
 }
 
-.blob--1 {
-    background: var(--accent1);
-    top: -150px;
-    left: -150px;
-}
-.blob--2 {
-    background: var(--accent2);
-    top: -150px;
-    left: 1000px;
-    animation-delay: -9s;
+/* Pageee Layout!! now, we are gonna do one wide for the converter and a narrow for frenzy */
+
+main {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(0, 3.4fr);
+    column-gap: clamp(20px, 4vw, 56px);
+    align-items: start;
 }
 
-@keyframes drift{
-    to{transform: translate(120px, 80px) scale(1.2);}
-}
-.app--frenzy .blob{ animation-duration: 3s;}
+/* MastHead */
 
-main{
-    position:relative;
-    z-index: 1;
-    width: min(560px, 100%);
-    text-align: center;
-}
 .title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    grid-column: 1/-1;
+    font-family: var(--blackletter);
     font-weight: 700;
-    letter-spacing: -2px;
+    font-size: clamp(3.2rem, 11vw, 7.5rem);
+    line-height: 0.95;
+    text-align: center;
+    padding: 14px 0 10px;
+    border-top: 6px solid var(--ink);
+}
 
+.title span {
+    color: var(--red);
 }
-.title span{
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+
 .subtitle {
-    color: var(--muted);
-    margin-bottom: 28px;
+    grid-column: 1/-1;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 2px;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 4px double var(--ink);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.16;
+    text-transform: uppercase;
 }
 
-.card{
-    background: var(--glass);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-radius: 28px;
-    padding:24px;
-    box-shadow:0 30px 80px rgba(0, 0, 0, 0.4);
+.subtitle:before {
+    content: "VOL. I \00B7 NO. 1";
+}
+
+.subtitle::after {
+    content: "PRICE: ONE GRAIN OF SALT"
+}
+
+.app--frenzy .subtitle::after {
+    content: "EXTRA! EXTRA! \00B7 NOW 40% LESS TRUE";
+}
+
+/* this is gonna cause a little tremor when u turn frenzy on */
+.app--frenzy .title span {
+    display: inline-block;
+    animation: tremor 0.5 steps(1) infinite;
+}
+
+@keyframes tremor {
+    0% {
+        transform: translate(0, 0) rotate(0);
+    }
+
+    25% {
+        transform: translate(1px, -1px) rotate(-0.6deg);
+    }
+
+    50% {
+        transform: translate(-1px, 0) rotate(0.5deg);
+    }
+
+    75% {
+        transform: translate(0, 1px) rotate(-0.3deg);
+    }
+}
+
+/* THE CARDD */
+.card {
+    grid-column: 2;
+    grid-row: 3;
+    background: var(--paper);
+    color: var(--ink);
+    border: 5px double var(--ink);
+    border-radius: 0;
+    padding: clamp(18px, 3vw, 34px);
     text-align: left;
 }
 
-.tabs{
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
-
-}
-.tab{
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding:7px 14px;
-    font: inherit;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.tab:hover{
-    color:var(--text);
-    transform: translateY(-1px);
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-
+/* Some interesting elements for the Frenzy mode */
+.app--frenzy .card {
+    box-shadow: 9px 9px 0 var(--red);
 }
 
-.row{
-    display: flex;
-    gap: 12px;
-    align-items: stretch;
-}
-.input, .select, .output {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    color: var(--text);
-    font: inherit;
-    padding: 16px;
-
-}
-.input, .output {
-    flex: 1;
-    font-size: 1.6rem;
-    min-width: 0;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-.select{
-    width: 42%;
-    font-size: 0.95rem;
-    cursor: pointer;
-}    
-.input:focus, .select:focus {
-    outline: 2px solid var(--accent2);
-}
-option{
-    background: #15152a;
+/* jolting for wrong answer */
+.card--shake {
+    animation: jolt 0.32s linear;
 }
 
-.swap {
-    display: block;
-    margin: 12px auto;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--glass);
-    color: var(--text);
-    font-size: 1.2rem;
-    cursor:pointer;
-    transition: transform 0.3s;
-}
-.swap:hover {
-    transform: rotate(180deg) scale(1.1);
-}
-.output {
-    animation: pop 0.35s ease;
-    user-select: all;
+@keyframes jolt {
 
-}
-@keyframes pop{
-    from {
-        opacity: 0;
-        transform:translateY(6px);
-    }
-}
-
-.output--glitch { 
-    animation: glitch 0.5s steps(2) both;
-    border-color: var(--accent1);
-}
-@keyframes glitch{
-    0% {
-        transform: translate(-3px, 2px);
-        text-shadow: 3px 0 #ff2e63, -3px 0 #29d3ff;
-    }
-    50%{
-        transform: translate(3px, -2px);
-        text-shadow: 3px 0 #ff2e63, 3px 0 #29d3ff
-    }
+    0%,
     100% {
-        transform:none; 
-        text-shadow: none;
+        transform: none;
+    }
+
+    15% {
+        transform: translate(-7px, 2px) rotate(-0.4deg);
+    }
+
+    35% {
+        transform: translate(6px, -2px) rotate(0.3deg);
+    }
+
+    55% {
+        transform: translate(-4px, 1px);
+    }
+
+    75% {
+        transform: translate(3px, -1px);
     }
 }
 
-.hint{
-    margin-top: 14px;
-    color: var(--muted);
-    font-size: 0.8rem;
-    text-align: center;
+/* CATEGORIES TABS */
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 8px;
+    margin-bottom: 30px;
 }
 
-/* SVGS */
-.tab, .hint, .frenzy__label {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.hint { justify-content: center; }
-
-.tab svg { flex-shrink: 0; }
-
-
-/* TOGGGLEEEE */
-.frenzy{
-    margin-top: 26px;
+.tab {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    background: var(--glass);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font: inherit;
-    font-weight: 500;
-    padding: 8px 18px 8px 8px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.3s;
+    gap: 7px;
+    padding: 7px 11px;
+    background: transparent;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 0.78;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: transform 50ms steps(2);
 }
 
-.frenzy__knob{
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--muted);
-    transition: all 0.3s;
-}
-.frenzy--on{
-    border-color: var(--accent1);
-    box-shadow: 0 0 30px var(--accent1);
-}
-.frenzy--on .frenzy__knob{
-    background: var(--accent1);
-    transform: rotate(360deg);
+.tab svg {
+    flex: none;
 }
 
-@media(max-width: 480px) {
-    .row { flex-direction: 480px; }
-    .select{width: 100%;}
+.tab:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--ink);
 }
 
-
-/* SOME CHANGES FOR AESTHETICS PLEASEE */
-
-@property --accent1 { syntax: "<color>"; inherits: true; initial-value: #7c5cff; }
-@property --accent2 { syntax: "<color>"; inherits: true; initial-value: #29d3ff; }
-
-.app { transition: --accent1 0.8s, --accent2 0.8s; }
-
-@property --angle {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
+.tab:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
 }
-.card {
+
+.tab--active {
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: 3px 3px 0 var(--red);
+}
+
+.tab--active:hover {
+    transform: none;
+    box-shadow: 3px 3px 0 var(--red);
+}
+
+/* INPUTTT AND OUTPUTTT ROWSS) */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 4px 22px;
+}
+
+/* im gonna write the small labels in css, I don't wanna mess up my React code */
+
+.tabs+.row::before,
+.swap+.row::before {
+    flex: 0 0 100%;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+}
+
+.tabs+.row::before {
+    content: "FROM";
+}
+
+.swap+.row::before {
+    content: "RESULT";
+}
+
+.app--frenzy .swap+.row::before {
+    content: "RESULT \2014 UNVERIFIED";
+}
+
+/* Just a big ahh typewriter line no box */
+
+.input {
+    flex: 1 1 0%;
+    min-width: 0;
+    padding: 4px 2px 6px;
+    background: transparent;
+    color: var(--ink);
+    border: 0;
+    border-bottom: 3px solid var(--ink);
+    border-radius: 0;
+    font-family: var(--mono);
+    font-weight: 700;
+    line-height: 1.1;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input:focus {
+    outline: none;
+    background: var(--paper-2);
+    border-bottom-color: var(--red);
+}
+
+/* Unit dropdown */
+.select {
+    flex: none;
+    width: 40%;
+    padding: 10px 30px 8px 2px;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%231a1510' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 12px 8px;
+    color: var(--ink);
+    border: 0;
+    border-bottom: 2px solid var(--ink);
+    border-radius: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    -webkit-appearance: ellipsis;
+    appearance: none;
+}
+
+.select:hover {
+    background-color: var(--paper-2);
+}
+
+.select:focus {
+    outline: none;
+    background-color: var(--paper-2);
+    border-bottom-color: var(--red);
+}
+
+/* The answer a solid black slab with paper-colored numebers*/
+
+.output {
     position: relative;
+    flex: 1 1 0%;
+    min-width: 0;
+    padding: 10px 16px 8px;
+    background: var(--ink);
+    color: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    font-family: var(--mono);
+    font-weight: 700;
+    line-height: 1.1;
+    word-break: break-all;
+    user-select: all;
+    animation: typeset 0.2s steps(6) backwards;
 }
-.card::before{
-    content: "";
+
+.app--frenzy .output {
+    cursor: pointer;
+}
+
+/* new result "TYPES" itself in from the left */
+@keyframes typeset {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* For lie---> A red correction stam slams on */
+.output--glitch::after {
+    content: "CORRECTION";
     position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: conic-gradient(from var(--angle), var(--accent1), var(--accent2), var(--accent1));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);;
-    mask-composite: exclude;
-    animation:spin 6s linear infinite;
+    right: 14px;
+    bottom: -18px;
+    padding: 3px 12px;
+    background: var(--paper);
+    color: var(--red);
+    border: 3px solid var(--red);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.18em;
+    transform: rotate(-8deg);
     pointer-events: none;
+    animation: slam 0.22s cubic-bazier(0.2, 0.9, 0.3, 1.2) both;
 }
-@keyframes spin { to { --angle: 360deg}}
 
-.title span{
-    background-image: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent1));
-    background-size: 200% auto;
-    animation: shimmer 4s linear infinite;
+@keyframes slam {
+    0% {
+        transform: rotate(-10deg) scale(2.4);
+        opacity: 0;
+    }
+
+    60% {
+        transform: rotate(-7deg) scale(0.94);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(-8deg) scale(1);
+        opacity: 1;
+    }
 }
-@keyframes shimmer { to{ background-position: 200% center;}}
 
-.app::after{
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: index 2;
-    opacity: 0.07;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+/* If rigth... small ink tag sit on the slab */
+.output--right::before{
+    content: "CALLED IT";
+    position: absolute;
+    top: -14px;
+    left: 14px;
+    padding: 1px 8px;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.65;
+    letter-spacing:0.14;
+}
+
+/* SWAPPP BUTTOON */
+.swap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 22px 0;
+    background: var(--paper);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 60ms steps(2),box-shadow 60ms steps(2);
+}
+.swap svg {
+    transition: transform 160ms steps(4);
+}
+.swap:hover{
+    background: var(--ink);
+    color: var(--paper);
+}
+.swap:hover svg {
+    transform: rotate 180deg;
+}
+.swap:active{
+    transform: translate(3px 3px);
+    box-shadow: none;
+}
+
+/* THE FINE PRINT!! */
+.hint{
+    margin-top: 28px;
+    padding-top: 10px;
+    border-top: 1px solid var(--ink);
+    font-style:italic;
+    font-size: 0.88rem;
+    color:var(--muted);
+}
+
+/* FRENZYY STAMP (tooglle thingy) */
+
+.frenzy {
+    --tilt: -3deg;
+    --c: var(--ink);
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+    align-self: start;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--paper);
+    color: var(--c);
+    border: 3px solid var(--c);
+    border-radius: 0;
+    box-shadow: 4px 4px 0 var(--c);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size:0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transform:rotate(var(--tilt));
+    transition: transform 80ms steps(2), box-shadow 80ms steps(2);
+}
+.frenzy:hover {
+    transform: rotate(var(--tilt)) translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--c);
+}
+.frenzy:active {
+    transform: rotate(var(--tilt)) translate(4px, 4px);
+    box-shadow: 0 0 0 var(--c);
+}
+.frenzy--on {
+    --tilt:-6deg;
+    --c: var(--red);
+}
+
+.frenzy__knob {
+    flex:none;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--c);
+    background: transparent;
+}
+.frenzy--o .frenzy__knob {
+    background: var(--c);
+}
+.frenzy__label {
+    display: inline-flex;
+    align-items:center;
+    gap: 6px;
+}
+
+/* SPOT THE LIE ---> GAME PANEL */
+
+.game{
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 4px double var(--ink);
+}
+
+.game__stats{
+    display: flex;
+    margin-bottom: 20px;
+}
+.game__stats span{
+    padding: 0 22px;
+    border-left: 2px solid var(--ink);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.game__stats span:first-child{
+    padding-left: 0;
+    border-left: 0;
+}
+.game__stats b {
+    display: block;
+    margin-bottom:4px;
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: 0;
+    color:var(--ink);
+}
+
+/* Legit is the small button and liar is the big one */
+
+.game__buttons{
+    display: grid;
+    grid-template-columns: 1fr 1.7fr;
+    gap:18px;
+}
+
+.game__btn{
+    --c: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 18px;
+    background: var(--paper);
+    color: var(--c);
+    border: 3px solid var(--c);
+    border-radius: 0;
+    box-shadow: 5px 5px 0 var(--c);
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 60ms steps(2), box-shadow 60ms steps(2);
+}
+.game__btn svg {
+    flex: none;
+}
+.game__btn:hover{
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 var(--c);
+    background: var(--c);
+    color: var(--paper);
+}
+.game__btn:active{
+    transform: translate(5px, 5px);
+    box-shadow: 0 0 0 var(--c);
+}
+.game__btn--liar{
+    --c:var(--red);
+}
+
+/* the reveal after a guess */
+.game__reveal .game__verdict{
+    margin-bottom:8px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1;
+    color: var(--ink);
+}
+.card--shake .game__verdict{
+    color: var(--red);
+}
+.game__reveal p {
+    max-width: 46ch;
+    margin-bottom: 16px;
+    font-style: italic;
+    font-size: 0.98rem;
+    line-height: 1.45;
+}
+.game__reveal .game__btn{
+    width: 100%;
+}
+
+/* SMALL SCREENSSS */
+@media (max-width: 860px){
+    main{
+        grid-template-columns: minmax(0, 1fr);
+        .card{
+            grid-column: 1;
+            grid-row: auto;
+        }
+        .frenzy{
+            grid-column: 1;
+            grid-row: auto;
+            margin-top: 30px;
+        }
+        .subtitle{
+            justify-content: center;
+            text-align: center;
+        }
+        .subtitle::before, .subtitle::after{
+            display: none;
+        }
+    }
+
+    @media (max-width:560px) {
+        .row {
+             flex-direction: column;
+             flex-wrap: nowrap;
+             align-items: stretch;
+             gap: 8px;
+            }
+        .tabs + .row::before, .swap + .row::before {
+            flex:none;
+        }
+        .input, .output{
+            flex: none;
+            width: 100%;
+        }
+        .select{
+            width: 100%;
+        }
+        .game__buttons{
+            grid-template-columns: 1fr;
+        }
+    }
+    /* for less motion on demand */
+    @media (prefers-reduced-motion: reduce){
+        *, *::before, *::after{
+            animation: none !important;
+            transition: none !important;
+        }
+    }
 }

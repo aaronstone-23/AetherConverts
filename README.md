@@ -105,7 +105,6 @@ Every unit defines how to turn itself into a base unit (`toBase`) and back (`fro
 The easiest free options are [Vercel](https://vercel.com/) and [Netlify](https://www.netlify.com/). Sign in with GitHub, import this repo, and it will detect Vite automatically. Every `git push` redeploys.
 
 
-## License
 
 ## License
 
