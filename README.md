@@ -35,8 +35,8 @@ You need [Node.js](https://nodejs.org/) 18 or newer.
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-cd YOUR-REPO-NAME
+git clone (https://github.com/aaronstone-23/AetherConverts)
+cd AetherConverts
 
 # 2. Install dependencies
 npm install
